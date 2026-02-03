@@ -11,7 +11,7 @@ The project is hosted on an **AWS EC2 (Ubuntu)** instance. Since I didn't want t
 * **Alerting on Volatility:** If a price moves more than 0.05% away from that rolling average, it triggers a `🚨ALERT` in the logs.
 * **Logging:** Everything is saved to a local `titan_data.csv` on the server so I can go back and look at the market movement over long periods.
 
-### 🚀Real-World Deployment
+### Real-World Deployment
 This isn't just running locally. Here is a shot of the engine active on my AWS instance. You can see my name in the console and the alerts it caught while I was away:
 
 ![AWS Deployment Proof](aws_deployment.jpg)
