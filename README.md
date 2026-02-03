@@ -14,7 +14,8 @@ The project is hosted on an **AWS EC2 (Ubuntu)** instance. Since I didn't want t
 ### Real-World Deployment
 This isn't just running locally. Here is a shot of the engine active on my AWS instance. You can see my name in the console and the alerts it caught while I was away:
 
-![Image 2-3-26 at 12 22 AM](https://github.com/user-attachments/assets/421bbd12-3b1c-4f04-bd71-ca80c3110c35)
+
+![Image 2-3-26 at 12 26 AM](https://github.com/user-attachments/assets/188f7d46-909d-41f9-add0-889124959ee2)
 
 
 ### What's in this Repo
