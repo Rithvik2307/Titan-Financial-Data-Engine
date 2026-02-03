@@ -14,7 +14,7 @@ The project is hosted on an **AWS EC2 (Ubuntu)** instance. Since I didn't want t
 ### 🚀Real-World Deployment
 This isn't just running locally. Here is a shot of the engine active on my AWS instance. You can see my name in the console and the alerts it caught while I was away:
 
-![AWS Deployment Proof](aws_deployment.png)
+![AWS Deployment Proof](aws_deployment.jpg)
 
 ### What's in this Repo
 * `main.py`: The production version of the engine with the anomaly logic.
