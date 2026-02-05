@@ -17,6 +17,19 @@ This isn't just running locally. Here is a shot of the engine active on my AWS i
 
 ![Image 2-3-26 at 12 26 AM](https://github.com/user-attachments/assets/188f7d46-909d-41f9-add0-889124959ee2)
 
+## Configuration & Sensitivity
+
+**Current Threshold:** `0.05%` (High Sensitivity)
+
+I set the alert threshold to **0.05%** intentionally. While this creates a lot of "noise" compared to a production trading bot, it serves two specific goals for this project:
+
+1.  **Stress-Testing:** It forces the system to process and log data constantly, proving the AWS pipeline can handle high-throughput without lagging.
+2.  **Micro-movements:** It captures granular price jitters that usually get filtered out, allowing me to visualize the volatility logic in real-time.
+
+### How to Change It
+To switch to a realistic production setting (fewer alerts):
+1.  Open `main.py`.
+2.  Change `THRESHOLD = 0.05` (Line 13) to `2.0` (2%) or higher.
 
 ### What's in this Repo
 * `main.py`: The production version of the engine with the anomaly logic.
