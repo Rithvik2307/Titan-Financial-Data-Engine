@@ -5,6 +5,24 @@ I built Titan because I wanted a way to track Bitcoin volatility 24/7 without ha
 ### The Setup
 The project is hosted on an **AWS EC2 (Ubuntu)** instance. Since I didn't want the script to die every time I closed my MacBook, I’m using a Linux tool called `screen`. This lets the engine run in the background 24/7, even while I'm away or my computer is off.
 
+### System Architecture
+```mermaid
+graph LR
+    A[Coinbase API] -- JSON Data --> B(Python Script)
+    B -- "Rolling Window (Deque)" --> C{Anomaly Check}
+    C -- "No" --> D[Log Normal Status]
+    C -- "Yes (>0.05%)" --> E[🚨 TRIGGER ALERT]
+    subgraph AWS EC2 Instance
+    B
+    C
+    D
+    E
+    F[(titan_data.csv)]
+    end
+    E --> F
+    D --> F
+```
+
 ### What it actually does
 * **Constant Monitoring:** It pings Coinbase every 10 seconds for the latest BTC-USD price.
 * **Calculating "Normal":** Instead of just looking at the current price, it keeps a rolling average of the last 10 data points (using a `deque`) to understand the current trend.
@@ -31,6 +49,25 @@ To switch to a realistic production setting (fewer alerts):
 1.  Open `main.py`.
 2.  Change `THRESHOLD = 0.05` (Line 13) to `2.0` (2%) or higher.
 
+## How to Run Locally
+If you want to run this engine on your own machine:
+
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/Rithvik2307/Titan-Financial-Data-Engine.git](https://github.com/Rithvik2307/Titan-Financial-Data-Engine.git)
+   cd Titan-Financial-Data-Engine
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Engine**
+   ```bash
+   python main.py
+   ```
+   
 ### What's in this Repo
 * `main.py`: The production version of the engine with the anomaly logic.
 * `titan_v1.py`: My first "proof of concept" script used for initial connectivity tests.
