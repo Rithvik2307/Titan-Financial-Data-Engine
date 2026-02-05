@@ -7,7 +7,7 @@ URL = 'https://api.coinbase.com/v2/prices/BTC-USD/spot'
 
 print("--- TITAN V1: THURSDAY CHECK ---")
 
-# 2. The Loop (Runs 5 times then quits so you can go to sleep)
+# 2. The Loop
 for i in range(5):
     try:
         # Get Data
@@ -25,4 +25,4 @@ for i in range(5):
     # Wait 2 seconds
     time.sleep(2)
 
-print("--- SYSTEM CHECK COMPLETE. GO TO SLEEP. ---")
+print("--- SYSTEM CHECK COMPLETE.")
