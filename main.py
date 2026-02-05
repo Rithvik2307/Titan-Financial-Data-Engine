@@ -5,14 +5,14 @@ import os
 from datetime import datetime
 from collections import deque
 
-# --- CONFIGURATION (The "Settings") ---
+# --- CONFIGURATION
 PAIR = 'BTC-USD'
 URL = f'https://api.coinbase.com/v2/prices/{PAIR}/spot'
 POLL_INTERVAL = 10  # Check every 10 seconds
 CSV_FILE = 'titan_data.csv'
 THRESHOLD = 0.0005  # 0.05% deviation triggers an alert (Sensitive for testing)
 
-# --- MEMORY (The "Brain") ---
+# --- MEMORY
 # We keep the last 10 prices to understand what is "normal"
 price_history = deque(maxlen=10)
 
@@ -49,7 +49,7 @@ def get_price():
         print(f"--- [ERROR] API Failed: {e} ---")
         return None
 
-# --- MAIN LOOP (The "Engine") ---
+# --- MAIN LOOP 
 if __name__ == "__main__":
     init_csv()
     print(f"--- TITAN ENGINE ONLINE. MONITORING {PAIR}... ---")
@@ -59,17 +59,16 @@ if __name__ == "__main__":
         price = get_price()
         
         if price:
-            # 1. THINK: Is this price weird?
+    
             is_anomaly, dev = detect_anomaly(price)
             status = "ANOMALY" if is_anomaly else "NORMAL"
             
-            # 2. OUTPUT: Print to screen
+          
             if is_anomaly:
                 print(f"[{timestamp}] 🚨 ALERT! ${price} (Dev: {dev*100:.4f}%)")
             else:
                 print(f"[{timestamp}] {PAIR}: ${price} | Status: {status}")
 
-            # 3. MEMORY: Save to CSV and update history
             log_data(timestamp, price, status, dev)
             price_history.append(price)
             
